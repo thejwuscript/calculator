@@ -1,0 +1,72 @@
+h1 {
+  margin-left: 120px;
+}
+
+#display {
+  background-color: #e9e6e6;
+  border: solid 2px black;
+  width: 460px;
+  font-size: 48px;
+  margin-left: 20px;
+  text-align: end;
+}
+
+.all-buttons {
+  display: flex;
+}
+
+.digits-container {
+  height: 300px;
+  width: 300px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin: 10px 0;
+}
+
+.digits {
+  font-size: 28px;
+  box-sizing: border-box;
+  border: solid black 1px;
+  border-radius: 10px;
+  width: 80px;
+}
+
+.operators-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 300px;
+  width: 100px;
+  gap: 10px;
+  margin: 10px 0;
+}
+
+.operators {
+  font-size: 28px;
+  box-sizing: border-box;
+  border: solid black 1px;
+  border-radius: 10px;
+  width: 80px;
+  height: 67.5px;
+
+}
+
+.clear-equal-buttons {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10px;
+  margin: 10px 0;
+}
+
+#clear, #equal {
+  font-size: 28px;
+  box-sizing: border-box;
+  border: solid black 1px;
+  border-radius: 10px;
+  width: 80px;
+  height: 67.5px;
+  flex: 1;
+}
