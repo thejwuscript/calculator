@@ -33,3 +33,14 @@ function operate(a, operator, b) {
   }
   return result;
 }
+
+const digits = document.querySelectorAll("button.digits");
+const display = document.querySelector("div#display");
+digits.forEach(addListener);
+function addListener(element) {
+element.addEventListener('click', displaydigit)
+};
+function displaydigit(e) {
+  display.textContent = e.target.textContent;
+};
+
