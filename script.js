@@ -36,11 +36,20 @@ function operate(a, operator, b) {
 
 const digits = document.querySelectorAll("button.digits");
 const display = document.querySelector("div#display");
+const operators = document.querySelectorAll("button.operators")
+
 digits.forEach(addListener);
 function addListener(element) {
-element.addEventListener('click', displaydigit)
+element.addEventListener('click', displayonedigit)
 };
-function displaydigit(e) {
+function displayonedigit(e) {
   display.textContent = e.target.textContent;
+  digits.forEach(element => element.addEventListener('click', joindigits));
+  digits.forEach(element => element.removeEventListener('click', displayonedigit));
+  
+};
+
+function joindigits(e) {
+  display.textContent += e.target.textContent;
 };
 
