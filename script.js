@@ -47,6 +47,9 @@ let valueOperator
 display.textContent = 0;
 
 digits.forEach(element => element.addEventListener('click', displayonedigit));
+digits.forEach(element => element.addEventListener('click', () => {
+  operators.forEach(operator => operator.addEventListener('click', firstclick));
+}));
 
 function displayonedigit(e) {
   display.textContent = e.target.textContent;
@@ -58,7 +61,7 @@ function joindigits(e) {
   display.textContent += e.target.textContent;
 };
 
-operators.forEach(operator => operator.addEventListener('click', (e) => {
+function firstclick(e) {
   valueB = display.textContent;
   if (valueA || valueOperator) {
     display.textContent = operate(valueA, valueOperator, valueB);
@@ -72,8 +75,16 @@ operators.forEach(operator => operator.addEventListener('click', (e) => {
   };
   digits.forEach(digit => digit.removeEventListener('click', joindigits));
   digits.forEach(digit => digit.addEventListener('click', displayonedigit));
-}));
+  operators.forEach(operator => operator.removeEventListener('click', firstclick));
+};
 
+operators.forEach(operator => operator.addEventListener('click', firstclick));
+operators.forEach(operator => operator.addEventListener('click', subsequentclicks));
+
+function subsequentclicks(e) {
+  valueOperator = e.target.textContent;
+  calculation.textContent = valueA + " " + e.target.textContent;
+}
 clear.addEventListener('click', () => {
   display.textContent = 0;
   calculation.textContent = ""
@@ -82,12 +93,14 @@ clear.addEventListener('click', () => {
   valueOperator = false;
   digits.forEach(digit => digit.removeEventListener('click', joindigits));
   digits.forEach(digit => digit.addEventListener('click', displayonedigit));
+  operators.forEach(operator => operator.removeEventListener('click', subsequentclicks));
+  operators.forEach(operator => operator.addEventListener('click', firstclick));
 });
 
 equal.addEventListener('click', () => {
   valueB = display.textContent;
   calculation.textContent = calculation.textContent + " " + valueB + " " + "="
-  display.textContent = operate(valueA, valueOperator,valueB);
+  display.textContent = operate(valueA, valueOperator, valueB);
   digits.forEach(digit => digit.removeEventListener('click', joindigits));
   digits.forEach(digit => digit.addEventListener('click', displayonedigit));
 });
