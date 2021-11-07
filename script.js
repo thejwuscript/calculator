@@ -1,19 +1,19 @@
 let result = 0;
 
 function add(a, b) {
-  return Number(a) + Number(b);
+  return Math.round((Number(a) + Number(b)) * 1000000) / 1000000;
 };
 
 function subtract(a, b) {
-  return a - b;
+  return Math.round((a - b) * 1000000) / 1000000;
 };
 
 function multiply(a, b) {
-  return a * b;
+  return Math.round((a * b) * 1000000) / 1000000;
 };
 
 function divide(a, b) {
-  return a / b;
+  return Math.round((a / b) * 1000000) / 1000000;
 };
 
 function operate(a, operator, b) {
@@ -55,7 +55,7 @@ function displayonedigit(e) {
   display.textContent = e.target.textContent;
   digits.forEach(element => element.addEventListener('click', joindigits));
   digits.forEach(element => element.removeEventListener('click', displayonedigit));
-  equal.addEventListener('click',tallyonetime, {once: true});
+  equal.addEventListener('click', tallyonetime, { once: true });
 };
 
 function joindigits(e) {
@@ -64,6 +64,7 @@ function joindigits(e) {
 
 function firstclick(e) {
   valueB = display.textContent;
+  
   if (valueA || valueOperator) {
     display.textContent = operate(valueA, valueOperator, valueB);
     valueA = display.textContent;
@@ -96,7 +97,7 @@ clear.addEventListener('click', () => {
   digits.forEach(digit => digit.addEventListener('click', displayonedigit));
   operators.forEach(operator => operator.removeEventListener('click', subsequentclicks));
   operators.forEach(operator => operator.addEventListener('click', firstclick));
-  equal.addEventListener('click',tallyonetime, {once: true});
+
 });
 
 equal.addEventListener('click', tallyonetime, { once: true });
