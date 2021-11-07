@@ -55,6 +55,7 @@ function displayonedigit(e) {
   display.textContent = e.target.textContent;
   digits.forEach(element => element.addEventListener('click', joindigits));
   digits.forEach(element => element.removeEventListener('click', displayonedigit));
+  equal.addEventListener('click',tallyonetime, {once: true});
 };
 
 function joindigits(e) {
@@ -95,12 +96,18 @@ clear.addEventListener('click', () => {
   digits.forEach(digit => digit.addEventListener('click', displayonedigit));
   operators.forEach(operator => operator.removeEventListener('click', subsequentclicks));
   operators.forEach(operator => operator.addEventListener('click', firstclick));
+  equal.addEventListener('click',tallyonetime, {once: true});
 });
 
-equal.addEventListener('click', () => {
+equal.addEventListener('click', tallyonetime, { once: true });
+
+function tallyonetime() {
   valueB = display.textContent;
   calculation.textContent = calculation.textContent + " " + valueB + " " + "="
   display.textContent = operate(valueA, valueOperator, valueB);
+  valueA = display.textContent;
   digits.forEach(digit => digit.removeEventListener('click', joindigits));
   digits.forEach(digit => digit.addEventListener('click', displayonedigit));
-});
+  operators.forEach(operator => operator.removeEventListener('click', firstclick));
+  operators.forEach(operator => operator.addEventListener('click', subsequentclicks));
+};
