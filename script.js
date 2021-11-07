@@ -39,7 +39,10 @@ const display = document.querySelector("div#display");
 const operators = document.querySelectorAll("button.operators");
 const clear = document.querySelector("button#clear");
 const equal = document.querySelector("button#equal");
-let storedValue = ""
+
+let valueA
+let valueB
+let valueOperator
 
 digits.forEach(element => element.addEventListener('click', displayonedigit));
 
@@ -54,8 +57,15 @@ function joindigits(e) {
 };
 
 operators.forEach(operator => operator.addEventListener('click', (e) => {
-  display.textContent = operate(storedValue, e.target.textContent, display.textContent);
-  storedValue = display.textContent;
+  valueB = display.textContent;
+  if (valueA || valueOperator) {
+    display.textContent = operate(valueA, valueOperator, valueB);
+    valueA = display.textContent;
+    valueOperator = e.target.textContent;
+  } else if (!valueA || !valueOperator) {
+    valueA = display.textContent;
+    valueOperator = e.target.textContent;
+  };
   digits.forEach(digit => digit.removeEventListener('click', joindigits));
   digits.forEach(digit => digit.addEventListener('click', displayonedigit));
 }));
