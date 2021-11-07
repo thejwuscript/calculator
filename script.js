@@ -54,8 +54,10 @@ digits.forEach(element => element.addEventListener('click', () => {
 function displayonedigit(e) {
   display.textContent = e.target.textContent;
   digits.forEach(element => element.addEventListener('click', joindigits));
-  digits.forEach(element => element.removeEventListener('click', displayonedigit));
+  operators.forEach(operator => operator.removeEventListener('click', subsequentclicks));
   equal.addEventListener('click', tallyonetime, { once: true });
+  digits.forEach(element => element.removeEventListener('click', displayonedigit));
+
 };
 
 function joindigits(e) {
@@ -64,7 +66,18 @@ function joindigits(e) {
 
 function firstclick(e) {
   valueB = display.textContent;
-  
+  if (valueB == "0" && valueOperator == "/") {
+    display.textContent = "Error. You can't do that :(";
+    display.style.fontSize = '32px';
+    calculation.textContent = valueA + " / 0"
+    digits.forEach(digit => digit.removeEventListener('click', joindigits));
+    digits.forEach(digit => digit.removeEventListener('click', displayonedigit));
+    operators.forEach(operator => operator.removeEventListener('click', subsequentclicks));
+    equal.removeEventListener('click', tallyonetime, { once: true });
+    operators.forEach(operator => operator.removeEventListener('click', firstclick));
+    return;
+  };
+  if (valueB == "Error. You can't do that :(") return;
   if (valueA || valueOperator) {
     display.textContent = operate(valueA, valueOperator, valueB);
     valueA = display.textContent;
@@ -77,11 +90,12 @@ function firstclick(e) {
   };
   digits.forEach(digit => digit.removeEventListener('click', joindigits));
   digits.forEach(digit => digit.addEventListener('click', displayonedigit));
+  operators.forEach(operator => operator.addEventListener('click', subsequentclicks));
   operators.forEach(operator => operator.removeEventListener('click', firstclick));
 };
 
 operators.forEach(operator => operator.addEventListener('click', firstclick));
-operators.forEach(operator => operator.addEventListener('click', subsequentclicks));
+
 
 function subsequentclicks(e) {
   valueOperator = e.target.textContent;
