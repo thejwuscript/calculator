@@ -118,6 +118,17 @@ equal.addEventListener('click', tallyonetime, { once: true });
 
 function tallyonetime() {
   valueB = display.textContent;
+  if (valueB == "0" && valueOperator == "/") {
+    display.textContent = "Error. You can't do that :(";
+    display.style.fontSize = '32px';
+    calculation.textContent = valueA + " / 0"
+    digits.forEach(digit => digit.removeEventListener('click', joindigits));
+    digits.forEach(digit => digit.removeEventListener('click', displayonedigit));
+    operators.forEach(operator => operator.removeEventListener('click', subsequentclicks));
+    equal.removeEventListener('click', tallyonetime, { once: true });
+    operators.forEach(operator => operator.removeEventListener('click', firstclick));
+    return;
+  };
   calculation.textContent = calculation.textContent + " " + valueB + " " + "="
   display.textContent = operate(valueA, valueOperator, valueB);
   valueA = display.textContent;
