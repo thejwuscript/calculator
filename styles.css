@@ -1,5 +1,8 @@
-h1 {
-  margin-left: 120px;
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 #calculation {
@@ -8,7 +11,7 @@ h1 {
   background-color: #f3efef;
   border: solid 1px black;
   width: 460px;
-  margin-left: 22px;
+  margin-top: 10px;
   margin-bottom: 8px;
   text-align: end;
 }
@@ -19,12 +22,14 @@ h1 {
   width: 460px;
   height: 52px;
   font-size: 48px;
-  margin-left: 20px;
   text-align: end;
+  white-space: pre-wrap;
 }
 
 .all-buttons {
   display: flex;
+  margin-right: 20px;
+  margin-top: 14px;
 }
 
 .digits-container {
@@ -38,6 +43,7 @@ h1 {
 }
 
 .digits {
+  background-color: rgb(233, 233, 237);
   font-size: 28px;
   font-weight: 600;
   box-sizing: border-box;
@@ -46,6 +52,13 @@ h1 {
   width: 80px;
 }
 
+.digits:hover {
+  background-color: rgb(208, 208, 215);
+}
+
+.digits:active {
+  background-color: rgb(177, 177, 185);
+}
 .operators-container {
   display: flex;
   flex-direction: column;

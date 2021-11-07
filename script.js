@@ -67,8 +67,8 @@ function joindigits(e) {
 function firstclick(e) {
   valueB = display.textContent;
   if (valueB == "0" && valueOperator == "/") {
-    display.textContent = "Error. You can't do that :(";
     display.style.fontSize = '32px';
+    display.textContent = "Error. You can't do that :(  ";
     calculation.textContent = valueA + " / 0"
     digits.forEach(digit => digit.removeEventListener('click', joindigits));
     digits.forEach(digit => digit.removeEventListener('click', displayonedigit));
@@ -77,7 +77,7 @@ function firstclick(e) {
     operators.forEach(operator => operator.removeEventListener('click', firstclick));
     return;
   };
-  if (valueB == "Error. You can't do that :(") return;
+  if (valueB == "Error. You can't do that :(  ") return;
   if (valueA || valueOperator) {
     display.textContent = operate(valueA, valueOperator, valueB);
     valueA = display.textContent;
@@ -111,7 +111,7 @@ clear.addEventListener('click', () => {
   digits.forEach(digit => digit.addEventListener('click', displayonedigit));
   operators.forEach(operator => operator.removeEventListener('click', subsequentclicks));
   operators.forEach(operator => operator.addEventListener('click', firstclick));
-  
+  display.style.fontSize = '48px';
 });
 
 equal.addEventListener('click', tallyonetime, { once: true });
@@ -119,7 +119,7 @@ equal.addEventListener('click', tallyonetime, { once: true });
 function tallyonetime() {
   valueB = display.textContent;
   if (valueB == "0" && valueOperator == "/") {
-    display.textContent = "Error. You can't do that :(";
+    display.textContent = "Error. You can't do that :(  ";
     display.style.fontSize = '32px';
     calculation.textContent = valueA + " / 0"
     digits.forEach(digit => digit.removeEventListener('click', joindigits));
@@ -129,7 +129,7 @@ function tallyonetime() {
     operators.forEach(operator => operator.removeEventListener('click', firstclick));
     return;
   };
-  if (valueB == false || valueOperator == false) return;
+  if (valueOperator == false) return;
   calculation.textContent = calculation.textContent + " " + valueB + " " + "="
   display.textContent = operate(valueA, valueOperator, valueB);
   valueA = display.textContent;
