@@ -36,6 +36,7 @@ function operate(a, operator, b) {
 
 const digits = document.querySelectorAll("button.digits");
 const display = document.querySelector("div#display");
+const calculation = document.querySelector("div#calculation");
 const operators = document.querySelectorAll("button.operators");
 const clear = document.querySelector("button#clear");
 const equal = document.querySelector("button#equal");
@@ -43,6 +44,7 @@ const equal = document.querySelector("button#equal");
 let valueA
 let valueB
 let valueOperator
+display.textContent = 0;
 
 digits.forEach(element => element.addEventListener('click', displayonedigit));
 
@@ -61,10 +63,12 @@ operators.forEach(operator => operator.addEventListener('click', (e) => {
   if (valueA || valueOperator) {
     display.textContent = operate(valueA, valueOperator, valueB);
     valueA = display.textContent;
+    calculation.textContent = valueA + " " + e.target.textContent;
     valueOperator = e.target.textContent;
   } else if (!valueA || !valueOperator) {
     valueA = display.textContent;
     valueOperator = e.target.textContent;
+    calculation.textContent = valueA + " " + e.target.textContent;
   };
   digits.forEach(digit => digit.removeEventListener('click', joindigits));
   digits.forEach(digit => digit.addEventListener('click', displayonedigit));
@@ -72,11 +76,18 @@ operators.forEach(operator => operator.addEventListener('click', (e) => {
 
 clear.addEventListener('click', () => {
   display.textContent = 0;
+  calculation.textContent = ""
+  valueA = false;
+  valueB = false;
+  valueOperator = false;
   digits.forEach(digit => digit.removeEventListener('click', joindigits));
   digits.forEach(digit => digit.addEventListener('click', displayonedigit));
 });
 
 equal.addEventListener('click', () => {
+  valueB = display.textContent;
+  calculation.textContent = calculation.textContent + " " + valueB + " " + "="
+  display.textContent = operate(valueA, valueOperator,valueB);
   digits.forEach(digit => digit.removeEventListener('click', joindigits));
   digits.forEach(digit => digit.addEventListener('click', displayonedigit));
 });
