@@ -39,8 +39,9 @@ h1 {
 
 .digits {
   font-size: 28px;
+  font-weight: 600;
   box-sizing: border-box;
-  border: solid black 1px;
+  border: solid black 2px;
   border-radius: 10px;
   width: 80px;
 }
@@ -57,11 +58,13 @@ h1 {
 
 .operators {
   font-size: 28px;
+  font-weight: 600;
   box-sizing: border-box;
-  border: solid black 1px;
+  border: solid black 2px;
   border-radius: 10px;
   width: 80px;
   height: 67.5px;
+  background-color: #ffc400;
 
 }
 
@@ -71,14 +74,25 @@ h1 {
   justify-content: center;
   gap: 10px;
   margin: 10px 0;
+  
 }
 
 #clear, #equal {
   font-size: 28px;
+  font-weight: 600;
   box-sizing: border-box;
-  border: solid black 1px;
+  border: solid black 2px;
+  background-color: #ffc400;
   border-radius: 10px;
   width: 80px;
   height: 67.5px;
   flex: 1;
+}
+
+#clear:hover, #equal:hover, .operators:hover {
+  background-color: #f0b800;
+}
+
+#clear:active, #equal:active, .operators:active {
+  background-color: #d8a500;
 }

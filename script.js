@@ -111,7 +111,7 @@ clear.addEventListener('click', () => {
   digits.forEach(digit => digit.addEventListener('click', displayonedigit));
   operators.forEach(operator => operator.removeEventListener('click', subsequentclicks));
   operators.forEach(operator => operator.addEventListener('click', firstclick));
-
+  
 });
 
 equal.addEventListener('click', tallyonetime, { once: true });
@@ -129,6 +129,7 @@ function tallyonetime() {
     operators.forEach(operator => operator.removeEventListener('click', firstclick));
     return;
   };
+  if (valueB == false || valueOperator == false) return;
   calculation.textContent = calculation.textContent + " " + valueB + " " + "="
   display.textContent = operate(valueA, valueOperator, valueB);
   valueA = display.textContent;
