@@ -61,7 +61,9 @@ function displayonedigit(e) {
 };
 
 function joindigits(e) {
-  display.textContent += e.target.textContent;
+  if (display.textContent == 0) {
+    display.textContent = e.target.textContent;
+  } else display.textContent += e.target.textContent;
 };
 
 function firstclick(e) {
