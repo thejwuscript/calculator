@@ -55,11 +55,14 @@ body {
   background-color: rgb(233, 233, 237);
   font-size: 28px;
   font-weight: 600;
+  color: black;
   box-sizing: border-box;
   border: solid black 2px;
   border-radius: 10px;
   width: 80px;
-  
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .digits:hover {
@@ -88,7 +91,10 @@ body {
   width: 80px;
   height: 67.5px;
   background-color: #ffc400;
-
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: black;
 }
 
 .clear-equal-buttons {
@@ -110,6 +116,10 @@ body {
   width: 80px;
   height: 67.5px;
   flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: black;
 }
 
 #clear:hover, #equal:hover, .operators:hover {
