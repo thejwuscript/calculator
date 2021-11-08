@@ -1,16 +1,19 @@
 body {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items:center;
   justify-content: center;
 }
+
+
 
 #calculation {
   font-size: 18px;
   height: 20px;
   background-color: #f3efef;
   border: solid 1px black;
-  width: 460px;
+  max-width: 460px;
+  width: 95vw;
   margin-top: 10px;
   margin-bottom: 8px;
   text-align: end;
@@ -19,7 +22,8 @@ body {
 #display {
   background-color: #e9e6e6;
   border: solid 2px black;
-  width: 460px;
+  max-width: 460px;
+  width: 95vw;
   height: 52px;
   font-size: 48px;
   text-align: end;
@@ -30,6 +34,7 @@ body {
   display: flex;
   margin-right: 20px;
   margin-top: 14px;
+  max-width: 95vw;
 }
 
 .digits-container {
@@ -50,6 +55,7 @@ body {
   border: solid black 2px;
   border-radius: 10px;
   width: 80px;
+  
 }
 
 .digits:hover {
@@ -108,4 +114,18 @@ body {
 
 #clear:active, #equal:active, .operators:active {
   background-color: #d8a500;
+}
+
+@media screen and (max-device-width: 415px) {
+  .digits {
+    width: 16vw;
+  }
+
+  .operators {
+    width: 16vw;
+  }
+
+  #clear, #equal {
+    width: 16vw;
+  }
 }
